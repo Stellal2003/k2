@@ -214,6 +214,7 @@ public class ProductModel {
 		}
 	}
 	
+	
 	public synchronized RecensioneBean getRecensione(int codiceProdotto, String email) {
 		String sql2 = "SELECT votazione, testo FROM Recensione WHERE codiceProdotto = ? AND emailCliente = ?";
 		Connection con = null;
