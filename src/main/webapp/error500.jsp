@@ -8,5 +8,6 @@
 <body>
     <h1>Errore interno del server</h1>
     <p>Si è verificato un errore interno del server. Contattare l'amministratore di sistema per assistenza.</p>
+    
 </body>
 </html>
