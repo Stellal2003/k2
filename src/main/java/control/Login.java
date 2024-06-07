@@ -59,8 +59,8 @@ public class Login extends HttpServlet {
 			
 			while (rs.next()) {
 				if (email.compareTo(rs.getString(1)) == 0) {
-					String psw = checkPsw(password);
-					if (psw.compareTo(rs.getString(2)) == 0) {
+					String psw = checkPsw(password); // Utilizzo di SHA-256 per crittografare la password durante il login
+					if (psw != null && psw.compareTo(rs.getString(2)) == 0) {
 						control = true;
 						UserBean registeredUser = new UserBean();
 						registeredUser.setEmail(rs.getString(1));
@@ -99,18 +99,16 @@ public class Login extends HttpServlet {
 	}
 		
 	private String checkPsw(String psw) {
-		MessageDigest md = null;
-		try {
-			md = MessageDigest.getInstance("MD5");
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-		byte[] messageDigest = md.digest(psw.getBytes());
-		BigInteger number = new BigInteger(1, messageDigest);
-		String hashtext = number.toString(16);
-		
-		return hashtext;
-	}
+	    try {
+	        MessageDigest md = MessageDigest.getInstance("SHA-256");
+	        byte[] messageDigest = md.digest(psw.getBytes());
+	        BigInteger number = new BigInteger(1, messageDigest);
+	        String hashtext = number.toString(16);
 
+	        return hashtext;
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return null;
+	    }
+	}
 }
