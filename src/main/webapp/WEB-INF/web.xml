@@ -40,4 +40,23 @@
     <exception-type>java.lang.Throwable</exception-type>
     <location>/error500.jsp</location>
   </error-page>
+
+  <filter>
+    <filter-name>ClickjackingFilter</filter-name>
+    <filter-class>control.ClickjackingFilter</filter-class>
+</filter>
+<filter-mapping>
+    <filter-name>ClickjackingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+</filter-mapping>
+
+<filter>
+    <filter-name>CSPFilter</filter-name>
+    <filter-class>control.CSPFilter</filter-class>
+</filter>
+<filter-mapping>
+    <filter-name>CSPFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+</filter-mapping>
+
 </web-app>
